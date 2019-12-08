@@ -1,0 +1,4 @@
+Trade: {
+    type={IrSwap}
+    price={105.25}
+}
