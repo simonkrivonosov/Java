@@ -4,6 +4,7 @@ import ru.sberbank.company.serializer.ObjectSerializer;
 import ru.sberbank.company.serializer.formatters.JSONSerializationFormatter;
 import ru.sberbank.company.serializer.formatters.XMLSerializationFormatter;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -15,23 +16,13 @@ public class Main {
 
     public static void main(String[] args) {
 
-        List<Hand> hands = Arrays.asList(new Hand("left"), new Hand("right"));
-        Doctor doctor3 = new Doctor("Richard", 3, null, null, null, hands);
-        Doctor doctor2 = new Doctor("John", 2, null, Arrays.asList("1wdcsadcsadc", "2asdcasdcasdc", "3casdcasdcasc"), Map.of(doctor3, doctor3), hands);
-        Doctor doctor = new Doctor("Alex", 4, null, Arrays.asList(1, 2, 3), null, hands);
+        List<String> phoneNumbers = new ArrayList<>(Arrays.asList("89115002030", "89155678090"));
+        Person person = new Person("Semen", "Petrov", 10, new Address("Moscow", "100111"), phoneNumbers);
 
-        Serializer jsonRecursiveSerializer = new ObjectSerializer(new JSONSerializationFormatter());
-        System.out.println(jsonRecursiveSerializer.serialize(doctor2));
-
-        Serializer xmlRecursiveSerializer = new ObjectSerializer(new XMLSerializationFormatter());
-        System.out.println(xmlRecursiveSerializer.serialize(doctor));
-    }
-}
-class Hand {
-    private final String type;
-
-    Hand(String type) {
-        this.type = type;
+//        Serializer jsonSerializer = new ObjectSerializer(new JSONSerializationFormatter());
+//        jsonSerializer.serialize(person);
+        Serializer xmlSerializer = new ObjectSerializer(new XMLSerializationFormatter());
+        System.out.println(xmlSerializer.serialize(person));
     }
 
 }
